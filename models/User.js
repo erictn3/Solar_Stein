@@ -22,7 +22,12 @@ const UserSchema = new Schema({
   jobOpportunities: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'JobOpportunity'
+      ref: 'JobOpportunity',
+      //unique: true, partialFilterExpression: { jobOpportunities : { $exists : true } }
+      //unique: true, partialFilterExpression: { 'jobOpportunities.length': { $gt: 0 } }
+      //unique: true, sparse : true
+      //unique: true
+      
     }
   ],
 

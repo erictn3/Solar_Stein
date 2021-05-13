@@ -55,7 +55,7 @@ const JobOpportunitySchema = new Schema({
     trim: true
   },
 
-  jobApplicationDate: {
+  applicationSubmittedDate: {
     type: Date,
     default: Date.now
   }
