@@ -1,14 +1,21 @@
-import Navbar from './components/Navbar/Navbar';
-import JobBoard from './components/Jobs/JobBoard';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import SignUp from './pages/Form/SignUp';
+import SignIn from './pages/Form/SignIn';
+import Home from './pages/Home/Home';
+
 import './App.css';
 
 function App() {
-
   return (
-    <div className="App">
-      <Navbar />
-      <JobBoard />
-    </div>
+    <Router>
+      <div className="App">
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/signin" component={SignIn} />
+      </div>      
+    </Router>
   );
 }
 
