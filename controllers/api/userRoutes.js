@@ -9,9 +9,7 @@ router.post('/', async ({ body }, res) => {
   try {
     body.jobOpportunities = [];
     const newUser = await User.create(body);
-
-    const { email, createdDate, _id, jobOpportunities, ...rest } = newUser;
-    const newUserDto = { id: _id, email, jobOpportunities, createdDate };
+    const newUserDto = getUserDto(newUser);
 
     res.status(200).json(newUserDto);
 
@@ -50,11 +48,9 @@ router.get('/', async ({ body }, res) => {
 
     if (isGetOne) {
       if (result != null) {
-
-        const { email, createdDate, _id, jobOpportunities, ...rest } = result;
-        const userDto = { id: _id, email, jobOpportunities, createdDate };
-
+        const userDto = getUserDto(result);
         res.status(200).json(userDto);
+
       } else {
         res.status(404).json({ message: `No user found with ${errorSuffix}` });
       } 
@@ -62,7 +58,9 @@ router.get('/', async ({ body }, res) => {
     // find all users
     } else {
       result = await User.find({}).populate('jobOpportunities');
-      res.status(200).json(result);
+      const users = result.map((user) => (getUserDto(user)));
+
+      res.status(200).json(users);
     }
 
   } catch (err) {
@@ -94,24 +92,24 @@ router.get('/', async ({ body }, res) => {
 //   }
 // });
 
-router.put('/', async ({ body, params }, res) => {
-  try {
-    const workout = await Workout.findByIdAndUpdate(params.id,
-      { $push: { exercises: body } },
-      {
-        // "new" will return object after update is applied
-        new: true,
+// router.put('/', async ({ body, params }, res) => {
+//   try {
+//     const workout = await Workout.findByIdAndUpdate(params.id,
+//       { $push: { exercises: body } },
+//       {
+//         // "new" will return object after update is applied
+//         new: true,
         
-        // "runValidators" ensures schema validators are applied
-        runValidators: true
-      }
-    );
-    res.json(workout);
+//         // "runValidators" ensures schema validators are applied
+//         runValidators: true
+//       }
+//     );
+//     res.json(workout);
 
-  } catch (err) {
-    res.json(err);
-  }
-});
+//   } catch (err) {
+//     res.json(err);
+//   }
+// });
 
 // router.delete('/workouts/:id', async ({ params }, res) => {
 //   try {
@@ -122,5 +120,16 @@ router.put('/', async ({ body, params }, res) => {
 //     res.json(err);
 //   }
 // });
+
+function getUserDto(user) {
+  let result = null;
+
+  if (user != null) {
+    const { email, createdDate, _id, jobOpportunities, ...rest } = user;
+    result = { id: _id, email, jobOpportunities, createdDate };
+  }
+
+  return result;
+}
 
 module.exports = router;
