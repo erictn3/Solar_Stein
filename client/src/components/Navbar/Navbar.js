@@ -13,7 +13,6 @@ class Navbar extends Component {
   render() {
     return(        
       <nav className="NavbarItems">
-        
         <h1 className="navbar-logo">Solar Stein<i className="fas fa-mountain"></i></h1>
         <div className="menu-icon" onClick={this.handleClick}>
           <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>

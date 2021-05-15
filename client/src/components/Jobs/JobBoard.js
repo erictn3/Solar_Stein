@@ -8,22 +8,22 @@ const Jobs = () => {
 
   useEffect(() => setJobs(data), []);
 
-  const filterFnc = ({ role, level, tools, languages }) => {
+  const filterFnc = ({ keySkills }) => {
     if (filters.length === 0) {
       return true;
     }
 
-    const jobTags = [role, level];
+    const skillTags = [keySkills];
 
-    if (tools) {
-      jobTags.push(...tools);
+    if (keySkills) {
+      skillTags.push(...keySkills);
     }
 
-    if (languages) {
-      jobTags.push(...languages);
-    }
+    // if (languages) {
+    //   jobTags.push(...languages);
+    // }
 
-    return filters.every(filter => jobTags.includes(filter));
+    return filters.every(filter => skillTags.includes(filter));
   };
 
   const handleTagClick = (tag) => {
