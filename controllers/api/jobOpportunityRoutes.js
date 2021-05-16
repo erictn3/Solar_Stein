@@ -20,7 +20,6 @@ router.post('/', async ({ body }, res) => {
 
 router.get('/', async ({ body }, res) => {
   try {
-
     let result = null;
 
     // find jobOpportunity by Id
@@ -39,7 +38,14 @@ router.get('/', async ({ body }, res) => {
     } else {
       result = await JobOpportunity.find({});
       const jobOps = result.map((jobOp) => (createJobOpportunityDto(jobOp)));
+      
+      //https://medium.com/@drevets/get-that-post-request-working-by-enabling-cors-on-an-express-backend-to-chat-w-ur-react-frontend-6d3405c65f65
+      //res.header('Access-Control-Allow-Origin', '*');
+      //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      //res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+      //res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
 
+      //res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // the URI you will make the request from
       res.status(200).json(jobOps);
     }
 

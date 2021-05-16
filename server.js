@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require("dotenv").config();
+require('dotenv').config();
 
 const MONGODB_URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const PORT = process.env.PORT || 3001;
@@ -14,6 +14,13 @@ app.use(express.json());
 mongoose.connect(MONGODB_URI || 'mongodb://localhost/solarstein_db', {
   useNewUrlParser: true,
   useFindAndModify: false
+});
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  //res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  next();
 });
 
 // Routes

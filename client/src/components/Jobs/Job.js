@@ -2,26 +2,26 @@ import React from "react";
 
 const Job = ({
   job: {
-    company,
+    jobTitle,
+    companyName,
     logo,
     // isOffer,
-    maxRange,
-    minRange,
+    salaryRangeMax,
+    salaryRangeMin,
     keySkills,
-    isSalary,
     currentStatus
   }, 
   handleTagClick,
 }) => {
   const skillTags = [];
 
-  isSalary = minRange != null && minRange >= 0 && maxRange != null && maxRange >= minRange;
+  let isSalary = salaryRangeMin != null && salaryRangeMin >= 0 && salaryRangeMax != null && salaryRangeMax >= salaryRangeMin;
 
   if (keySkills) {
-    skillTags.push(...keySkills);
+    skillTags.push(...keySkills.map((keySkill) => (keySkill.skill)));
   }
 
-  const isOffer = currentStatus.toLowerCase() == "offer";
+  const isOffer = currentStatus.toLowerCase() === "offer";
 
   var formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -38,11 +38,11 @@ const Job = ({
         isOffer && "border-l-4 border-blue-500 border-solid"
       } lg:flex-row lg:my-4` }>
       <div>
-        <img className="-mt-16 mb-4 w-20 h-20 lg:h-24 lg:w-24 lg:my-0" src={logo} alt={company} />
+        <img className="-mt-16 mb-4 w-20 h-20 lg:h-24 lg:w-24 lg:my-0" src={logo} alt={companyName} />
       </div>
       <div className="flex flex-col justify-between ml-4 ">
         <h3 className="font-bold text-blue-400">
-          {company}
+          {companyName}
           {/* {isOffer && (
             <span className="text-blue-100 bg-blue-300 font-bold p-1 rounded-full m-2 py-1 px-2 uppercase text-sm">
               Offer
@@ -56,23 +56,23 @@ const Job = ({
           )}
         </h3>
         
-        {/* <h2 className="font-bold text-xl my-2 lg:my-0" >{position}</h2> */}
+        <h2 className="font-bold text-xl my-2 lg:my-0" >{jobTitle}</h2>
 
-        {minRange != null && minRange >= 0 && maxRange != null && maxRange >= minRange && (
+        {salaryRangeMin != null && salaryRangeMin >= 0 && salaryRangeMax != null && salaryRangeMax >= salaryRangeMin && (
           <p className="text-gray-700">
-            {formatter.format(minRange)} - {formatter.format(maxRange)}              
+            {formatter.format(salaryRangeMin)} - {formatter.format(salaryRangeMax)}              
           </p>      
         )}
 
       </div>
       <div className="flex flex-wrap items-center mt-4 mx-4 pt-4 border-t border-gray-500 border-solid lg:ml-auto lg:border-0 lg:pt-0 lg:mt-0 cursor-pointer">
         {skillTags
-          ? skillTags.map((skillTags) => (
+          ? skillTags.map((skillTag) => (
               <span 
               onClick={() => 
-                handleTagClick(skillTags)} 
+                handleTagClick(skillTag)} 
                 className="text-blue-400 bg-blue-100 font-bold mr-4 mb-4 p-2 rounded lg:mb-0">
-                {skillTags}
+                {skillTag}
               </span>
             ))
           : ""}

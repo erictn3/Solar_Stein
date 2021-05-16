@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from "react";
 import Job from "./Job";
-import data from "../../data.json";
+import API from '../../utils/API';
+//import data from "../../data.json";
 
 const Jobs = () => {
-  const [jobs, setJobs] = useState([]);
+  let [jobs, setJobs] = useState([]);
   const [filters, setFilters] = useState([]);
 
-  useEffect(() => setJobs(data), []);
+  //useEffect(() => setJobs(data), []);
+  useEffect(() => {
+        
+    // async function getJobs() {
+    //   return await API.getJobs();
+    // }
+    // let apiJobs = getJobs();
+
+    API.getJobs().then(apiJobs => {
+      console.log('Inside useEffect()');
+      console.log(apiJobs);
+      setJobs(apiJobs);
+    });
+
+
+
+    //setJobs(apiJobs);
+  }, []);
 
   const filterFnc = ({ keySkills }) => {
     if (filters.length === 0) {
@@ -39,7 +57,8 @@ const Jobs = () => {
     setFilters([]);
   }
 
-  const filteredJobs = jobs.filter(filterFnc);
+  //const filteredJobs = jobs.filter(filterFnc);
+  const filteredJobs = jobs;
 
   return (
     <>
@@ -62,7 +81,7 @@ const Jobs = () => {
           <p>Jobs are fetching...</p>
         ) : (
           filteredJobs.map((job) => (
-            <Job job={job} key={job.id} handleTagClick={handleTagClick} />
+            <Job job={job} key={job._id} handleTagClick={handleTagClick} />
           ))
         )}
       </div>

@@ -1,21 +1,22 @@
-import axios from "axios";
-// Export an object containing methods we'll use for accessing the RandomUser API
-export default {
-  getUsers: function() {
-    return axios.get("https://localhost.me/api/?results=100&nat=us");
-  }
+import axios from 'axios';
 
-  getJobs: function( {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default {
+  // getUsers: function() {
+  //   return axios.get('https://localhost.me/api/?results=100&nat=us');
+  // },
+
+  getJobs: async function() {
     const config = {
       method: 'get',
-      url: 'http://localhost:3001/api/jobOpportunities'
-    }
-    
-    return axios.get('http://localhost:3001/api/jobOpportunities', )
-    data: {
-      firstName: 'Finn',
-      lastName: 'Williams'
-    }
+      url: 'http://localhost:3001/api/jobopportunities'
+    };
+    let result = await axios(config);
+
+    //let result = await axios.get('http://localhost:3001/api/jobopportunities');
+    //console.log(result.data);
+
+    return result.data;
   }
 
 };

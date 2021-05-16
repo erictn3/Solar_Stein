@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let db = require('../models');
 
-require("dotenv").config();
+require('dotenv').config();
 const MONGODB_URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 //mongoose.connect('mongodb://localhost/workoutdb', {
@@ -39,7 +39,7 @@ let jobOpportunitySeed = [
   {
     jobTitle: 'Engineer',
     companyName: 'Trilogy',
-    currentStatus: 'Technical Phone Screen Scheduled',
+    currentStatus: 'Applied',
     salaryRangeMin: 100000,
     salaryRangeMax: 130000,
     keySkills: [
@@ -51,6 +51,36 @@ let jobOpportunitySeed = [
       },
       {
         skill: 'Express.js'
+      }
+    ],
+    applicationStages: [
+      {
+        name: 'Application Submitted',
+        notes: 'Attached resume and cover letter'
+      },
+      {
+        name: 'HR Phone Interview',
+        notes: 'Talked to Lisa, very friendly'
+      }
+    ],
+    submittedFrom: 'Company Website',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
+  {
+    jobTitle: 'Senior Engineer',
+    companyName: 'Google',
+    currentStatus: 'Offer',
+    salaryRangeMin: 200000,
+    salaryRangeMax: 230000,
+    keySkills: [
+      {
+        'skill': 'High Creativity'
+      },
+      {
+        'skill': 'Problem Solving'
+      },
+      {
+        'skill': 'Data Structures'
       }
     ],
     applicationStages: [
