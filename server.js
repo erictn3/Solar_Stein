@@ -2,10 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+
 const MONGODB_URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

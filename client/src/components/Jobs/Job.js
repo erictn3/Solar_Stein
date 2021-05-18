@@ -14,7 +14,7 @@ const Job = ({
   handleTagClick,
 }) => {
   const skillTags = [];
-
+// TODO==========================================================================================================================================
   let isSalary = salaryRangeMin != null && salaryRangeMin >= 0 && salaryRangeMax != null && salaryRangeMax >= salaryRangeMin;
 
   if (keySkills) {

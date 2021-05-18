@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Job from "./Job";
 import API from '../../utils/API';
-//import data from "../../data.json";
+import data from "../../data.json";
 
 const Jobs = () => {
   let [jobs, setJobs] = useState([]);
   const [filters, setFilters] = useState([]);
 
-  //useEffect(() => setJobs(data), []);
+  // useEffect(() => setJobs(data), []);
   useEffect(() => {
         
-    // async function getJobs() {
-    //   return await API.getJobs();
-    // }
-    // let apiJobs = getJobs();
+  //   // async function getJobs() {
+  //   //   return await API.getJobs();
+  //   // }
+  //   // let apiJobs = getJobs();
 
     API.getJobs().then(apiJobs => {
       console.log('Inside useEffect()');
       console.log(apiJobs);
       setJobs(apiJobs);
     });
-
-
 
     //setJobs(apiJobs);
   }, []);
@@ -57,7 +55,7 @@ const Jobs = () => {
     setFilters([]);
   }
 
-  //const filteredJobs = jobs.filter(filterFnc);
+  // const filteredJobs = jobs.filter(filterFnc);
   const filteredJobs = jobs;
 
   return (
