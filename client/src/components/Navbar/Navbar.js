@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { MenuItem } from './MenuItems'; 
 import { Button } from '../Buttons/Button';
 import './Navbar.css';
+import image from './solarstein-logo-final.png'
 
 class Navbar extends Component {
   state = { clicked: false }
@@ -13,7 +14,7 @@ class Navbar extends Component {
   render() {
     return(        
       <nav className="NavbarItems">
-        <h1 className="navbar-logo" href='/'>Solar Stein<i className="fas fa-mountain"></i></h1>
+        <h1 className="navbar-logo">Solar Stein<img src={image} alt="" className="stein-logo"/></h1>
         <div className="menu-icon" onClick={this.handleClick}>
           <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
         </div>

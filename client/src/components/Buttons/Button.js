@@ -21,6 +21,8 @@ export const Button = ({
     <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick}
     type={type}>
       {children}
+      <a href="/jobForm"><button id="add-new-visit"><i class="fas fa-edit fa-2x"></i></button></a>
     </button>
+  
   )
 };

@@ -4,8 +4,9 @@ const Job = ({
   job: {
     jobTitle,
     companyName,
-    logo,
+    // logo,
     // isOffer,
+    appliedFrom,
     salaryRangeMax,
     salaryRangeMin,
     keySkills,
@@ -15,7 +16,7 @@ const Job = ({
 }) => {
   const skillTags = [];
 // TODO==========================================================================================================================================
-  let isSalary = salaryRangeMin != null && salaryRangeMin >= 0 && salaryRangeMax != null && salaryRangeMax >= salaryRangeMin;
+  // let isSalary = salaryRangeMin != null && salaryRangeMin >= 0 && salaryRangeMax != null && salaryRangeMax >= salaryRangeMin;
 
   if (keySkills) {
     skillTags.push(...keySkills.map((keySkill) => (keySkill.skill)));
@@ -31,6 +32,40 @@ const Job = ({
   });
   // formatter.format(2500); /* $2,500.00 */
 
+  const getLogo = () => {
+    let logo = './images/solarstein-logo-final.png'
+    // let logo = './../public/images/photosnap.svg';
+
+    switch(appliedFrom.toLowerCase()) {
+      case "linkedin":
+        logo = './images/LinkedIn-Logo.png';
+        break;
+      case "indeed":
+        logo = './images/indeed-Logo.png';
+        break;
+      case "monster":
+        logo = './images/monster-Logo.png';
+        break;
+      case "ladders":
+        logo = './images/ladders-Logo.png';
+        break;
+      case "ziprecruiter":
+        logo = './images/zipr-Logo.png';
+        break;
+      case "roberthalf":
+        logo = './images/roberth-Logo.png';
+        break;
+      // case "other":
+      //   logo = './images/other-Logo.png';
+      //   break;
+      default:
+
+    }
+    return logo;
+  }
+
+
+
   return (
     <div
     // change featured to new for highlighting application status
@@ -38,7 +73,7 @@ const Job = ({
         isOffer && "border-l-4 border-blue-500 border-solid"
       } lg:flex-row lg:my-4` }>
       <div>
-        <img className="-mt-16 mb-4 w-20 h-20 lg:h-24 lg:w-24 lg:my-0" src={logo} alt={companyName} />
+        <img className="-mt-16 mb-4 w-20 h-20 lg:h-24 lg:w-24 lg:my-0" src={getLogo()} alt={companyName} />
       </div>
       <div className="flex flex-col justify-between ml-4 ">
         <h3 className="font-bold text-blue-400">

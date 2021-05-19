@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Job from "./Job";
 import API from '../../utils/API';
 import data from "../../data.json";
+import { Button } from '../Buttons/Button';
 
 const Jobs = () => {
   let [jobs, setJobs] = useState([]);
@@ -82,6 +83,7 @@ const Jobs = () => {
             <Job job={job} key={job._id} handleTagClick={handleTagClick} />
           ))
         )}
+      
       </div>
     </>
   );

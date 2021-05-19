@@ -6,7 +6,9 @@ import SignIn from './pages/Form/SignIn';
 import Home from './pages/Home/Home';
 import ChartIndex from './pages/Chart/index';
 
-import './App.css';
+// import './App.css';
+
+import JobForm from './pages/Jobs/index';
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/chart" component={ChartIndex} />
+        <Route exact path="/jobForm" component={JobForm} />
       </div>      
     </Router>
   );

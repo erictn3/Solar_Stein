@@ -8,6 +8,12 @@
   font-size: 1.2rem;
 }
 
+.stein-logo{
+  width: 30px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
 .navbar-logo {
   color: #fff;
   justify-self: start;
@@ -89,7 +95,8 @@
   }
 
   .nav-links:hover {
-    background-color: #7577fa;
+    background-color: #E5875D;
+    opacity: 50%;
     border-radius: 0;
   }
 
