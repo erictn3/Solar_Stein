@@ -20,9 +20,9 @@ const useForm = (callback, validate) => {
   }
 
   const handleSubmit = e => {
-    e.preventDefault();
-    
-    setErrors(validate(values));
+    // e.preventDefault();
+    console.log(e);
+    // setErrors(validate(values));
     setIsSubmitting(true);
   }
 
