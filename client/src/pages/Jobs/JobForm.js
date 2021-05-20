@@ -42,6 +42,7 @@ const JobForm = ({ submitForm }) => {
           <input
             id="minSalaryRange"
             type="number"
+            step="1000"
             name="minSalaryRange"
             className="form-input"
             placeholder="Enter Min Salary Range"
@@ -58,6 +59,7 @@ const JobForm = ({ submitForm }) => {
           <input
             id="maxRange"
             type="number"
+            step="1000"
             name="maxRange"
             className="form-input"
             placeholder="Enter Max Salary Range"

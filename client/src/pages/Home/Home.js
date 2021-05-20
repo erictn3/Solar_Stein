@@ -8,7 +8,7 @@ const Home = () => {
     <div>
       <Navbar />
       <JobBoard />
-      <Button></Button>
+      {/* <Button></Button> */}
     </div>
   )
 }

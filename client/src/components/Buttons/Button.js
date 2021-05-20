@@ -3,7 +3,7 @@ import "./Button.css";
 
 const STYLES = ["btn--primary", "btn--outline"];
 
-const SIZES = ["btn--medium", "btn--large"];
+const SIZES = ["btn--medium", "btn--large","btn--small"];
 
 export const Button = ({
   children,
@@ -21,8 +21,8 @@ export const Button = ({
     <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick}
     type={type}>
       {children}
-      <a href="/jobForm"><button id="add-new-visit"><i class="fas fa-edit fa-2x"></i></button></a>
+      <a href="/jobForm"><button id="add-new-job">Add Job<i class="far fa-plus-square"></i></button></a>
     </button>
-  
+
   )
 };

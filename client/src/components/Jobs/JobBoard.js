@@ -56,8 +56,8 @@ const Jobs = () => {
     setFilters([]);
   }
 
-  // const filteredJobs = jobs.filter(filterFnc);
-  const filteredJobs = jobs;
+  const filteredJobs = jobs.filter(filterFnc);
+  // const filteredJobs = jobs;
 
   return (
     <>
@@ -83,7 +83,7 @@ const Jobs = () => {
             <Job job={job} key={job._id} handleTagClick={handleTagClick} />
           ))
         )}
-      
+            <Button></Button>
       </div>
     </>
   );

@@ -1,10 +1,10 @@
 :root {
-  --primary: #3acbf7;
+  --primary: #4793aa;
 }
 
 .btn {
-  padding: 8px 20px;
-  border-radius: 4px;
+  padding: 8px 8px;
+  border-radius: 10px;
   outline: none;
   border: none;
   cursor: pointer;
@@ -13,13 +13,16 @@
 .btn:hover {
   padding: 8px 20px;
   transition: all 0.3s ease-out;
-  background: #fff;
-  color: #6568f4;
+  background: rgb(23, 98, 148);
+  color: #f465ed;
   transition: 250ms;
 }
 
 .btn--primary {
   background-color: var(--primary);
+  position: relative;
+  float: right;
+  margin-left: 20px;
 }
 
 .btn--outline {
@@ -33,14 +36,18 @@
 
 .btn--medium {
   padding: 8px 20px;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 18px;
   color: #fff;
 }
 
 .btn-large {
-  padding: 12px 26px;
+  padding: 8px 8px;
   border-radius: 4px;
   font-size: 20px;
   color: #fff;
+}
+
+#add-new-job {
+  float: right;
 }

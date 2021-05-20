@@ -33,7 +33,7 @@ const Job = ({
   // formatter.format(2500); /* $2,500.00 */
 
   const getLogo = () => {
-    let logo = './images/solarstein-logo-final.png'
+    let logo = './images/app-logo.png'
     // let logo = './../public/images/photosnap.svg';
 
     switch(appliedFrom.toLowerCase()) {
@@ -55,11 +55,10 @@ const Job = ({
       case "roberthalf":
         logo = './images/roberth-Logo.png';
         break;
-      // case "other":
-      //   logo = './images/other-Logo.png';
-      //   break;
+      case "other":
+        logo = './images/app-logo.png';
+        break;
       default:
-
     }
     return logo;
   }

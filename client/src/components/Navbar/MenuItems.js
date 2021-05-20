@@ -10,7 +10,7 @@ export const MenuItem = [
     cName: "nav-links"
   },
   {
-    title: "Job Form",
+    title: "Job Forms",
     url: "jobForm",
     cName: "nav-links"
   }
