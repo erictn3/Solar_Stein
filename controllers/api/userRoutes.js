@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+var jwt = require('jsonwebtoken');
+const { body, validationResult } = require('express-validator');
 const { User, JobOpportunity } = require('../../models');
 
 //const prettyJson = JSON.stringify(workout, null, 2);
@@ -8,8 +11,23 @@ const { User, JobOpportunity } = require('../../models');
 router.post('/', async ({ body }, res) => {
   try {
     body.jobOpportunities = [];
-    const newUser = await User.create(body);
+    // const newUser = await User.create(body);
+    // const newUserDto = createUserDto(newUser);
+
+    // CREATE INSTANCE OF USER
+    const reqUser = new User({
+      email: body.email
+    });
+
+    // ADD SALT ENCRYPTION WITH BCRYPTJS
+    const salt = await bcrypt.genSalt(10);
+    reqUser.password = await bcrypt.hash(body.password, salt);
+
+    // INSERT NEW USER INTO DB
+    const newUser = await User.create(reqUser);
     const newUserDto = createUserDto(newUser);
+
+
 
     res.status(200).json(newUserDto);
 
