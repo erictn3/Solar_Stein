@@ -6,10 +6,11 @@
   "scripts": {
     "test": "jest --verbose test/*",
     "start": "node server.js",
-    "server": "nodemon server",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "seed": "node seeders/seed.js"
+    "dev": "nodemon server.js",
+    "seed": "node seeders/seed.js",
+    "build": "cd client && npm run build",
+    "install": "cd client && npm install",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",

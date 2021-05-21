@@ -81,6 +81,11 @@
   color: #fff;
 }
 
+.salary {
+  display:inline-block;
+  width: 10%;
+}
+
 .form-inputs {
   margin-bottom: 0.5rem;
   width: 80%;
