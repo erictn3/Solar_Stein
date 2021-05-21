@@ -31,7 +31,6 @@ render() {
   return (
     <div className="form-content-right">
       <form className="form" onSubmit={this.handleSubmit}>
-
         {/* <h1>
           Create your job board by filling out the
         information below!
@@ -72,41 +71,47 @@ render() {
 
         {/* TODO: split min and max into one line */}
 
-        <div className="form-inputs">
-          <label htmlFor="minRange" className="form-label">
-            Min Salary
-          </label>
-          <input
-            id="minSalaryRange"
-            type="number"
-            step="1000"
-            name="minSalaryRange"
-            className="form-input"
-            placeholder="Enter Min Salary Range"
-            // value={minSalaryRange}
-            // values={values.salaryRange}
-            onChange={this.handleInputChange}
-          />
-          {/* {errors.minSalaryRange && <p>{errors.minSalaryRange}</p>} */}
+        <div className="form-inputs salary">
+          <div>
+            <label htmlFor="minRange" className="form-label">
+              Min Salary
+            </label>
+            <input
+              id="minSalaryRange"
+              type="number"
+              step="1000"
+              name="minSalaryRange"
+              className="form-input"
+              placeholder="Enter Min Salary Range"
+              // value={minSalaryRange}
+              // values={values.salaryRange}
+              onChange={this.handleInputChange}
+            />            
+          </div>
+          <div>
+            <label htmlFor="maxSalaryRange salary" className="form-label">
+              Max Salary
+            </label>
+            <input
+              id="maxSalaryRange"
+              type="number"
+              step="1000"
+              name="maxSalaryRange"
+              className="form-input"
+              placeholder="Enter Max Salary Range"
+              // value={maxSalaryRange}
+              // values={values.salaryRange}
+              onChange={this.handleInputChange}
+            />
+          {/* {errors.minSalaryRange && <p>{errors.minSalaryRange}</p>} */}            
+          </div>
+
         </div>
 
-        <div className="form-inputs">
-          <label htmlFor="maxSalaryRange" className="form-label">
-            Max Salary
-          </label>
-          <input
-            id="maxSalaryRange"
-            type="number"
-            step="1000"
-            name="maxSalaryRange"
-            className="form-input"
-            placeholder="Enter Max Salary Range"
-            // value={maxSalaryRange}
-            // values={values.salaryRange}
-            onChange={this.handleInputChange}
-          />
-          {/* {errors.maxRange && <p>{errors.maxRange}</p>} */}
-        </div>
+        {/* <div className="form-inputs">
+  
+          {/* {errors.maxRange && <p>{errors.maxRange}</p>} *
+        </div> */}
 
         <div className="form-inputs">
           <label htmlFor="skills" className="form-label">
