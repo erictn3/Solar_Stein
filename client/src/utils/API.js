@@ -9,6 +9,7 @@ export default {
   getJobs: async function() {
     const config = {
       method: 'get',
+      // Local host change
       url: '/api/jobopportunities'
     };
     let result = await axios(config);
