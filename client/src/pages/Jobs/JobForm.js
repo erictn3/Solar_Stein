@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { Component} from "react";
 import useForm from "./useForm";
 
 import "./JobForm.css";
@@ -6,77 +6,36 @@ import "./JobForm.css";
 // import validate from "./validateInfo";
 
 
-const JobForm = ({ submitForm }) => {
-
-  const [companyName, setCompanyName] = useState('');
-  const [jobTitle, setJobTitle] = useState('');
-  const [minSalaryRange, setMinSalaryRange] = useState(0);
-  const [maxSalaryRange, setMaxSalaryRange] = useState(0);
-  const [jobSkills, setJobSkills] = useState([]);
-  const [jobSite, setJobSite] = useState('');
-  const [jobNotes, setNotes] = useState('');
-
-  // const { handleChange, values, handleSubmit, errors } = useForm(
-  //   submitForm,
-  //   validate
-
-  // );
-
-
-
-  const handleChange = (event) => {
-    let jobForm = event.currentTarget.parentElement.parentElement;
-
-    setCompanyName(jobForm.companyName);
-    setJobTitle(jobForm.jobTitle);
-    setMinSalaryRange(jobForm.minSalaryRange);
-    setMaxSalaryRange(jobForm.maxSalaryRange);
-    setJobSkills(jobForm.skills);
-    setJobSite(jobForm.jobSite);
-    setNotes(jobForm.jobNotes);
-
-
-
-    // console.log(company); 
-    // console.log(event.currentTarget.parentElement.parentElement); 
-    console.log(event.currentTarget.parentElement.parentElement.jobTitle); 
-    console.log(event.currentTarget.parentElement.parentElement.companyName); 
-    console.log(event.currentTarget.parentElement.parentElement.minSalaryRange); 
-    console.log(event.currentTarget.parentElement.parentElement.maxSalaryRange); 
-    console.log(event.currentTarget.parentElement.parentElement.skills); 
-    console.log(event.currentTarget.parentElement.parentElement.jobSite); 
-    console.log(event.currentTarget.parentElement.parentElement.jobNotes); 
-
-  }
-
-  // console.log(submitForm);
-
-  const submitHandler = (event) => {
-    // event.preventDefault();
-    const job = {
-      companyName, jobTitle, minSalaryRange, maxSalaryRange, jobSkills, jobSite, jobNotes
-    };
-  console.log("HERE==============================================")
-
-  console.log(job);
-  }
-
-  // handleSubmit = (event) => {
-
+class JobForms extends Component {
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     companyName: ''
+  //   }
   // }
 
-  // const { handleSubmit } = useForm(
-  //   console.log(submitForm)
-  // );    
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const data = this.state
+    console.log('final data is', data)
+  }
 
+  handleInputChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+render() {
   return (
     <div className="form-content-right">
-      {/* <form className="form" onSubmit={this.handleSubmit}> */}
-      <form className="form">
-        <h1>
+      <form className="form" onSubmit={this.handleSubmit}>
+
+        {/* <h1>
           Create your job board by filling out the
-          information below!
-        </h1>
+        information below!
+        </h1> */}
         <div className="form-inputs">
           <label htmlFor="companyName" className="form-label">
             Company
@@ -89,7 +48,7 @@ const JobForm = ({ submitForm }) => {
             placeholder="Enter company"
             // value={companyName}
             // values={values.companyName}
-            onChange={handleChange}
+            onChange={this.handleInputChange}
           />
           {/* {errors.companyName && <p>{errors.companyName}</p>} */}
         </div>
@@ -106,7 +65,7 @@ const JobForm = ({ submitForm }) => {
             placeholder="Enter Job Title"
             // value={jobTitle}
             // values={values.jobTitle}
-            onChange={handleChange}
+            onChange={this.handleInputChange}
           />
           {/* {errors.jobTitle && <p>{errors.jobTitle}</p>} */}
         </div>
@@ -126,7 +85,7 @@ const JobForm = ({ submitForm }) => {
             placeholder="Enter Min Salary Range"
             // value={minSalaryRange}
             // values={values.salaryRange}
-            onChange={handleChange}
+            onChange={this.handleInputChange}
           />
           {/* {errors.minSalaryRange && <p>{errors.minSalaryRange}</p>} */}
         </div>
@@ -144,7 +103,7 @@ const JobForm = ({ submitForm }) => {
             placeholder="Enter Max Salary Range"
             // value={maxSalaryRange}
             // values={values.salaryRange}
-            onChange={handleChange}
+            onChange={this.handleInputChange}
           />
           {/* {errors.maxRange && <p>{errors.maxRange}</p>} */}
         </div>
@@ -161,7 +120,7 @@ const JobForm = ({ submitForm }) => {
             placeholder="Enter Skills"
             // value={jobSkills}
             // values={values.jobSkills}
-            onChange={handleChange}
+            onChange={this.handleInputChange}
           />
           {/* {errors.jobSkills && <p>{errors.jobSkills}</p>} */}
         </div>
@@ -178,7 +137,7 @@ const JobForm = ({ submitForm }) => {
             placeholder="Enter Job Application Site"
             // value={jobSite}
             // values={values.jobSite}
-            onChange={handleChange}
+            onChange={this.handleInputChange}
           >
             <option values="default">-</option>
             <option values="indeed">Indeed</option>
@@ -204,19 +163,26 @@ const JobForm = ({ submitForm }) => {
             placeholder="Additional Notes"
             // value={jobNotes}
             // values={values.jobNotes}
-            onChange={handleChange}
+            onChange={this.handleInputChange}
           />
           {/* {errors.jobNotes && <p>{errors.jobNotes}</p>} */}
         </div>
 
-        <button className="form-input-btn" type="submit"
-        onClick={submitHandler()}>
+        <button className="form-input-btn" type="submit">
+        {/* onClick={submitHandler()}> */}
         {/* <button className="form-input-btn" type="submit"> */}
           Submit
         </button>
       </form>
     </div>
-  );
+  );  
+}
+
+  // const { handleSubmit } = useForm(
+  //   console.log(submitForm)
+  // );    
+
+
 };
 
-export default JobForm;
+export default JobForms;
