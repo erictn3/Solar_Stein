@@ -63,7 +63,7 @@ let jobOpportunitySeed = [
         notes: 'Talked to Lisa, very friendly'
       }
     ],
-    submittedFrom: 'Company Website',
+    appliedFrom: 'LinkedIn',
     applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
   },
   {
@@ -93,7 +93,7 @@ let jobOpportunitySeed = [
         notes: 'Talked to Lisa, very friendly'
       }
     ],
-    submittedFrom: 'Company Website',
+    appliedFrom: 'Other',
     applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
   }
 ];

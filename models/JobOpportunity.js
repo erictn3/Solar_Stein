@@ -50,7 +50,7 @@ const JobOpportunitySchema = new Schema({
     }
   ],
   
-  submittedFrom: {
+  appliedFrom: {
     type: String, // make an enum here, like Indeed, LinkedIn, Company website, Recruiter, etc.
     trim: true
   },
