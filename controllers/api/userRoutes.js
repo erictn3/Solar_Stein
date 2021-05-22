@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const { User, JobOpportunity } = require('../../models');
 
@@ -27,9 +27,43 @@ router.post('/', async ({ body }, res) => {
     const newUser = await User.create(reqUser);
     const newUserDto = createUserDto(newUser);
 
+    // GENERATE JSON WEB TOKEN
+    let jsonToken;
 
+    const payload = {
+      user: {
+        id: newUserDto.id
+      }
+    }
 
-    res.status(200).json(newUserDto);
+    console.log('FIRST JSONTOKEN:');
+    console.log(jsonToken);
+
+    await jwt.sign(
+      payload,
+      'jwtSecret1234',
+      { expiresIn: '2 days'},
+      async (err, token) => {
+        console.log('TOKEN:');
+        if (err) throw err;
+        jsonToken = `x-auth-token=${token}; HttpOnly`;
+        console.log(jsonToken);
+
+        res.header('Set-Cookie', jsonToken);
+        res.status(200).json(newUserDto);
+      }
+    )
+
+    console.log('JSONTOKEN AGAIN:');
+    console.log(jsonToken);
+
+    // NEED TO INSERT TOKEN AS A HEADER
+    // Set-Cookie
+    // x-auth-token
+    // connect.sid=s%3Ad1lgtZ3rdYG04zcIxiync4GETa6lbcdQ.30AwdVEmnRYmdB1evzpJ2ctd7NCVkj%2BJZL7TKAE2nTk; Path=/; HttpOnly
+
+    // res.header('Set-Cookie', jsonToken);
+    // res.status(200).json(newUserDto);
 
   } catch (err) {
     console.log(err);
@@ -37,12 +71,28 @@ router.post('/', async ({ body }, res) => {
   }
 });
 
-router.get('/', async ({ body }, res) => {
+router.get('/', async (req, res) => {
   try {
 
+    let body = req.body;
     let result = null;
     let isGetOne = false;
     let errorSuffix = null;
+
+    let cookieHeader = req.header('Cookie');
+    let cookies = cookieHeader.split(';');
+    let xAuthToken = null;
+
+    for (let cookie of cookies) {
+      if (cookie.trim().startsWith('x-auth-token')) {
+        let components = cookie.split('=');
+        xAuthToken = components[1].trim();
+        break;
+      }
+    }
+
+    console.log('XAUTHTOKEN:');
+    console.log(xAuthToken);
 
     // find user by Id
     if (body.id != null) {

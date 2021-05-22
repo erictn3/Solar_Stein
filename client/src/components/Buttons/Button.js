@@ -21,7 +21,7 @@ export const Button = ({
     <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick}
     type={type}>
       {children}
-      <a href="/jobForm"><button id="add-new-job">Add Job<i class="far fa-plus-square"></i></button></a>
+      <a href="/jobForm"><button id="add-new-job">Add Job<i className="far fa-plus-square"></i></button></a>
     </button>
 
   )
