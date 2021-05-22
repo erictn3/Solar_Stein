@@ -1,14 +1,11 @@
 import React from 'react';
 // import './SignupForm.css';
 
-const SignupForm = () => {
+const SigninForm = () => {
   return (
     <div class='body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0 bg-blue-400'>
       <header class='mx-auto max-w-lg'>
-        <href>
-          <h1 class="text-4xl font-bold text-white text-center">Sign In<i className="fas fa-mountain"></i></h1>        
-        </href>
-
+        <h1 class="text-4xl font-bold text-white text-center">Sign In<i className="fas fa-mountain"></i></h1>        
       </header>
       <main class='bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg'>
         <section>
@@ -47,4 +44,4 @@ const SignupForm = () => {
     </div>
   )
 }
-export default SignupForm;
+export default SigninForm;

@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import useForm from "./useForm";
 
 import "./JobForm.css";
@@ -7,12 +7,6 @@ import "./JobForm.css";
 
 
 class JobForms extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     companyName: ''
-  //   }
-  // }
 
   handleSubmit = (event) => {
     event.preventDefault()
@@ -174,8 +168,6 @@ render() {
         </div>
 
         <button className="form-input-btn" type="submit">
-        {/* onClick={submitHandler()}> */}
-        {/* <button className="form-input-btn" type="submit"> */}
           Submit
         </button>
       </form>

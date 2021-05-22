@@ -10,7 +10,9 @@ export default {
     const config = {
       method: 'get',
       // Local host change
-      url: '/api/jobopportunities'
+
+      // url: '/api/jobopportunities'
+      url: 'http://localhost:3001/api/jobopportunities'
     };
     let result = await axios(config);
 
