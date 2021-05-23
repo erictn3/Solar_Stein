@@ -2,11 +2,121 @@ const router = require('express').Router();
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { body, validationResult } = require('express-validator');
+//const { body, validationResult } = require('express-validator');
 const { User, JobOpportunity } = require('../../models');
 
 //const prettyJson = JSON.stringify(workout, null, 2);
 //console.log(prettyJson);
+
+router.post('/login', async ({ body }, res) => {
+  //router.post('/login', async (req, res) => {
+    try {
+      console.log(body);
+      // const userData = await User.findOne({ where: { email: req.body.email } });
+      // console.log(userData)
+  
+      // if (!userData) {
+      //   console.log('reached here!!')
+      //   res
+      //     .status(400)
+      //     .json({ message: 'Incorrect email or password, please try again' });
+      //   return;
+      // }
+  
+      // const validPassword = await userData.checkPassword(req.body.password);
+  
+      // if (!validPassword) {
+      //   res
+      //     .status(400)
+      //     .json({ message: 'Incorrect email or password, please try again' });
+      //   return;
+      // }
+  
+      // req.session.save(() => {
+      //   req.session.user_id = userData.id;
+      //   req.session.logged_in = true;
+        
+        res.json({ user: body.email, message: 'You are now logged in!' });
+      // });
+  
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
+
+router.post('/logout', (req, res) => {
+  // if (req.session.logged_in) {
+  //   req.session.destroy(() => {
+  //     res.status(204).end();
+  //   });
+  // } else {
+  //   res.status(404).end();
+  // }
+  res.json({ message: 'Successfully logged out!' });
+});
+
+router.post('/get', async (req, res) => {
+  try {
+
+    let body = req.body;
+
+    console.log('API GET USER:');
+    console.log(body);
+
+    let result = null;
+    let isGetOne = false;
+    let errorSuffix = null;
+
+    // let cookieHeader = req.header('Cookie');
+    // let cookies = cookieHeader.split(';');
+    // let xAuthToken = null;
+
+    // for (let cookie of cookies) {
+    //   if (cookie.trim().startsWith('x-auth-token')) {
+    //     let components = cookie.split('=');
+    //     xAuthToken = components[1].trim();
+    //     break;
+    //   }
+    // }
+
+    // console.log('XAUTHTOKEN:');
+    // console.log(xAuthToken);
+
+    // find user by Id
+    if (body.id != null) {
+      result = await User.findById(body.id).populate('jobOpportunities');
+      isGetOne = true;
+      errorSuffix = `id: ${body.id}`;
+    
+    // find by email
+    } else if (body.email != null) {
+      result = await User.findOne({ email: body.email }).populate('jobOpportunities');
+      isGetOne = true;
+      errorSuffix = `email: ${body.email}`;
+    }
+
+    if (isGetOne) {
+      if (result != null) {
+        const userDto = createUserDto(result);
+        res.status(200).json(userDto);
+
+      } else {
+        res.status(404).json({ message: `No user found with ${errorSuffix}` });
+      } 
+    
+    // find all users
+    } else {
+      result = await User.find({}).populate('jobOpportunities');
+      const users = result.map((user) => (createUserDto(user)));
+
+      res.status(200).json(users);
+    }
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 router.post('/', async ({ body }, res) => {
   try {
@@ -64,65 +174,6 @@ router.post('/', async ({ body }, res) => {
 
     // res.header('Set-Cookie', jsonToken);
     // res.status(200).json(newUserDto);
-
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-router.get('/', async (req, res) => {
-  try {
-
-    let body = req.body;
-    let result = null;
-    let isGetOne = false;
-    let errorSuffix = null;
-
-    let cookieHeader = req.header('Cookie');
-    let cookies = cookieHeader.split(';');
-    let xAuthToken = null;
-
-    for (let cookie of cookies) {
-      if (cookie.trim().startsWith('x-auth-token')) {
-        let components = cookie.split('=');
-        xAuthToken = components[1].trim();
-        break;
-      }
-    }
-
-    console.log('XAUTHTOKEN:');
-    console.log(xAuthToken);
-
-    // find user by Id
-    if (body.id != null) {
-      result = await User.findById(body.id).populate('jobOpportunities');
-      isGetOne = true;
-      errorSuffix = `id: ${body.id}`;
-    
-    // find by email
-    } else if (body.email != null) {
-      result = await User.findOne({ email: body.email }).populate('jobOpportunities');
-      isGetOne = true;
-      errorSuffix = `email: ${body.email}`;
-    }
-
-    if (isGetOne) {
-      if (result != null) {
-        const userDto = createUserDto(result);
-        res.status(200).json(userDto);
-
-      } else {
-        res.status(404).json({ message: `No user found with ${errorSuffix}` });
-      } 
-    
-    // find all users
-    } else {
-      result = await User.find({}).populate('jobOpportunities');
-      const users = result.map((user) => (createUserDto(user)));
-
-      res.status(200).json(users);
-    }
 
   } catch (err) {
     console.log(err);
@@ -191,6 +242,7 @@ router.delete('/', async ({ body }, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+
 });
 
 function createUserDto(user) {

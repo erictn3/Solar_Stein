@@ -55,12 +55,28 @@ let jobOpportunitySeed = [
     ],
     applicationStages: [
       {
-        name: 'Application Submitted',
+        name: 'Applied',
         notes: 'Attached resume and cover letter'
       },
       {
-        name: 'HR Phone Interview',
+        name: 'Phone Screening',
         notes: 'Talked to Lisa, very friendly'
+      },
+      {
+        name: 'Technical Interview',
+        notes: 'Fo Sho'
+      },
+      {
+        name: 'Coding Challenge',
+        notes: 'Fo Sho'
+      },
+      {
+        name: 'Onsite',
+        notes: 'Fo Sho'
+      },
+      {
+        name: 'Offer',
+        notes: 'Fo Sho'
       }
     ],
     appliedFrom: 'LinkedIn',
@@ -85,12 +101,16 @@ let jobOpportunitySeed = [
     ],
     applicationStages: [
       {
-        name: 'Application Submitted',
+        name: 'Applied',
         notes: 'Attached resume and cover letter'
       },
       {
-        name: 'HR Phone Interview',
+        name: 'Phone Screening',
         notes: 'Talked to Lisa, very friendly'
+      },
+      {
+        name: 'Coding Challenge',
+        notes: 'Yeeaah'
       }
     ],
     appliedFrom: 'Other',
@@ -118,11 +138,13 @@ async function run() {
     console.log(`Inserted ${insertedCount} User record(s)!`);
 
     let jobId = null;
+    let jobIds = [];
     for (job of jobOpportunitySeed)
     {
       let count = 0;
       let newJobOp = await db.JobOpportunity.create(job);
       jobId = newJobOp._id;
+      jobIds.push(newJobOp._id);
       count++;
       console.log(`${count} jobs inserted`);
       console.log(newJobOp);
@@ -146,7 +168,7 @@ async function run() {
     //let jobOpportunity = await db.JobOpportunity.findOne({});
     //console.log(jobOpportunity);
 
-    let updatedUser = await db.User.findOneAndUpdate({ email: 'eric@solarstein.io' }, { $addToSet: { jobOpportunities: jobId } }, { new: true })
+    let updatedUser = await db.User.findOneAndUpdate({ email: 'eric@solarstein.io' }, { $addToSet: { jobOpportunities: jobIds } }, { new: true })
     console.log(`Updated User: ${updatedUser}`);
 
     process.exit(0);

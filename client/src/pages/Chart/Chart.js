@@ -1,23 +1,62 @@
-import React, {Component} from 'react';
-import {Bar} from 'react-chartjs-2';
+import React, { useState, useEffect } from 'react';
+import { Bar } from 'react-chartjs-2';
+import API from '../../utils/API';
 
-class Chart extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      chartData:{
+function Chart(props) {
+  const[chartData, setChartData] = useState({ labels: [], datasets: [] });
+
+  useEffect(() => {
+    API.getUser('eric@solarstein.io').then(user => {
+
+      const jobsData = {
+        applied: 0,
+        phoneScreening: 0,
+        technicalInterview: 0,
+        codingChallenge: 0,
+        onSite: 0,
+        offer: 0
+      };
+
+      console.log('USER:');
+      console.log(user);
+
+      if (user != null && user.jobOpportunities != null) {
+        for (let job of user.jobOpportunities) {
+          for (let stage of job.applicationStages) {
+            switch(stage.name.toLowerCase().trim()) {
+              case 'applied':
+                jobsData.applied++;
+                break;
+              case 'phone screening':
+                jobsData.phoneScreening++;
+                break;
+              case 'technical interview':
+                jobsData.technicalInterview++;
+                break;
+              case 'coding challenge':
+                jobsData.codingChallenge++;
+                break;              
+              case 'onsite':
+                jobsData.onSite++;
+                break;
+              case 'offer':
+                jobsData.offer++;
+                break;
+              default:
+            }            
+          }
+        }
+      }
+
+      const { applied, phoneScreening, technicalInterview, codingChallenge, onSite, offer } = jobsData;
+      var stats = [applied, phoneScreening, technicalInterview, codingChallenge, onSite, offer];
+
+      setChartData({
         labels: ['Applied', 'Phone Screening', 'Technical Interview', 'Coding Challenge', 'Onsite', 'Offer'], 
         datasets:[
           {
             label:'Job Opportunities',
-            data:[
-              110,
-              40,
-              30,
-              10,
-              10,
-              5
-            ],
+            data: stats,
             backgroundColor: [
               'rgba(100,99,132,0.4)',
               'rgba(32,186,191,0.4)',
@@ -29,35 +68,29 @@ class Chart extends Component {
           }
         ]
       }
-    }
-  }
 
-  static defaultProps = {
-    displayTitle:true,
-    displayLegend:true,
-    legendPosition:'right'
-  }
+      );
+    });
+  }, []);
 
-  render() {
-    return (
-      <div className="chart">
-        <Bar 
-          data={this.state.chartData}
-          options={{
-            title: {
-              display:this.props.displayTitle,
-              text:'',
-              fontSize:25
-            },
-            legend:{
-              display:this.props.displayLegend, 
-              position:this.props.legendPosition
-            }
-          }}  
-        />
-      </div>
-    )
-  }
+  return (
+    <div className="chart">
+      <Bar 
+        data={chartData}
+        options={{
+          title: {
+            display: props.displayTitle,
+            text:'',
+            fontSize:25
+          },
+          legend:{
+            display: props.displayLegend, 
+            position: props.legendPosition
+          }
+        }}  
+      />
+    </div>
+  )
 }
 
 export default Chart;
