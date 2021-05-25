@@ -2,6 +2,7 @@ import React from "react";
 
 const Job = ({
   job: {
+    _id,
     jobTitle,
     companyName,
     // logo,
@@ -13,6 +14,7 @@ const Job = ({
     currentStatus
   }, 
   handleTagClick,
+  onClick
 }) => {
   const skillTags = [];
 // TODO==========================================================================================================================================
@@ -74,7 +76,7 @@ const Job = ({
       <div>
         <img className="-mt-16 mb-4 w-20 h-20 lg:h-24 lg:w-24 lg:my-0" src={getLogo()} alt={companyName} />
       </div>
-      <div className="flex flex-col justify-between ml-4 ">
+      <div className="flex flex-col justify-between ml-4 cursor-pointer" onClick={() => onClick(_id)}>
         <h3 className="font-bold text-blue-400">
           {companyName}
           {/* {isOffer && (

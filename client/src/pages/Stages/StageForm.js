@@ -1,66 +1,29 @@
-import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
-import API from '../../utils/API';
-import useForm from "./useForm";
+import React, { Component } from "react";
 
-import "./JobForm.css";
+import "./StageForm.css";
 // TODO
 // import validate from "./validateInfo";
 
 
-//class JobForms extends Component {
-const JobForms = () => {
-  const history = useHistory();
-  const [job, setJob] = useState({});  
-  
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    //const data = this.state;
-    const data = job;
+class StageForm extends Component {
 
-    console.log('form data is', data);
-
-    const newJobDto = {
-      jobTitle: data.jobTitle,
-      companyName: data.companyName,
-      currentStatus: 'Applied',
-      applicationStages: [{name: 'Applied', notes: ''}],
-      keySkills: [{skill: data.skills}],
-      salaryRangeMax: data.maxSalaryRange,
-      salaryRangeMin: data.minSalaryRange,
-      appliedFrom: data.jobSite
-    };
-
-    console.log('NEW JOB DTO:');
-    console.log(newJobDto);
-
-    
-    const result = await API.createJob(newJobDto);
-    console.log('API RESULT:');
-    console.log(result);
-
-    //const history = useHistory();
-    history.push('/home');
-
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const data = this.state
+    console.log('final data is', data)
   }
 
-  //handleInputChange = (event) => {
-  const handleInputChange = async (event) => {
+  handleInputChange = (event) => {
     event.preventDefault();
-    
-    job[event.target.name] = event.target.value;
-    setJob(job);
-
-    // this.setJob({
-    //   [event.target.name]: event.target.value
-    // })
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
-
-//render() {
+render() {
   return (
     <div className="form-content-right">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={this.handleSubmit}>
         {/* <h1>
           Create your job board by filling out the
         information below!
@@ -77,8 +40,7 @@ const JobForms = () => {
             placeholder="Enter company"
             // value={companyName}
             // values={values.companyName}
-            // onChange={this.handleInputChange}
-            onChange={handleInputChange}
+            onChange={this.handleInputChange}
           />
           {/* {errors.companyName && <p>{errors.companyName}</p>} */}
         </div>
@@ -95,7 +57,7 @@ const JobForms = () => {
             placeholder="Enter Job Title"
             // value={jobTitle}
             // values={values.jobTitle}
-            onChange={handleInputChange}
+            onChange={this.handleInputChange}
           />
           {/* {errors.jobTitle && <p>{errors.jobTitle}</p>} */}
         </div>
@@ -116,7 +78,7 @@ const JobForms = () => {
               placeholder="Enter Min Salary Range"
               // value={minSalaryRange}
               // values={values.salaryRange}
-              onChange={handleInputChange}
+              onChange={this.handleInputChange}
             />            
           </div>
           <div>
@@ -132,17 +94,12 @@ const JobForms = () => {
               placeholder="Enter Max Salary Range"
               // value={maxSalaryRange}
               // values={values.salaryRange}
-              onChange={handleInputChange}
+              onChange={this.handleInputChange}
             />
           {/* {errors.minSalaryRange && <p>{errors.minSalaryRange}</p>} */}            
           </div>
 
         </div>
-
-        {/* <div className="form-inputs">
-  
-          {/* {errors.maxRange && <p>{errors.maxRange}</p>} *
-        </div> */}
 
         <div className="form-inputs">
           <label htmlFor="skills" className="form-label">
@@ -156,7 +113,7 @@ const JobForms = () => {
             placeholder="Enter Skills"
             // value={jobSkills}
             // values={values.jobSkills}
-            onChange={handleInputChange}
+            onChange={this.handleInputChange}
           />
           {/* {errors.jobSkills && <p>{errors.jobSkills}</p>} */}
         </div>
@@ -173,7 +130,7 @@ const JobForms = () => {
             placeholder="Enter Job Application Site"
             // value={jobSite}
             // values={values.jobSite}
-            onChange={handleInputChange}
+            onChange={this.handleInputChange}
           >
             <option values="default">-</option>
             <option values="indeed">Indeed</option>
@@ -199,7 +156,7 @@ const JobForms = () => {
             placeholder="Additional Notes"
             // value={jobNotes}
             // values={values.jobNotes}
-            onChange={handleInputChange}
+            onChange={this.handleInputChange}
           />
           {/* {errors.jobNotes && <p>{errors.jobNotes}</p>} */}
         </div>
@@ -210,7 +167,7 @@ const JobForms = () => {
       </form>
     </div>
   );  
-//}
+}
 
   // const { handleSubmit } = useForm(
   //   console.log(submitForm)
@@ -219,4 +176,4 @@ const JobForms = () => {
 
 };
 
-export default JobForms;
+export default StageForm;

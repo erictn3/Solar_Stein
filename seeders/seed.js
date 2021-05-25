@@ -39,7 +39,7 @@ let jobOpportunitySeed = [
   {
     jobTitle: 'Engineer',
     companyName: 'Trilogy',
-    currentStatus: 'Applied',
+    currentStatus: 'Offer',
     salaryRangeMin: 100000,
     salaryRangeMax: 130000,
     keySkills: [
@@ -85,7 +85,7 @@ let jobOpportunitySeed = [
   {
     jobTitle: 'Senior Engineer',
     companyName: 'Google',
-    currentStatus: 'Offer',
+    currentStatus: 'Coding Challenge',
     salaryRangeMin: 200000,
     salaryRangeMax: 230000,
     keySkills: [
@@ -111,6 +111,74 @@ let jobOpportunitySeed = [
       {
         name: 'Coding Challenge',
         notes: 'Yeeaah'
+      }
+    ],
+    appliedFrom: 'Other',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
+  {
+    jobTitle: 'Engineer',
+    companyName: 'Intellect',
+    currentStatus: 'Technical Interview',
+    salaryRangeMin: 70000,
+    salaryRangeMax: 10000,
+    keySkills: [
+      {
+        'skill': 'Graphic Design'
+      }
+    ],
+    applicationStages: [
+      {
+        name: 'Applied',
+        notes: 'Attached resume and cover letter'
+      },
+      {
+        name: 'Phone Screening',
+        notes: 'Talked to Lisa, very friendly'
+      },
+      {
+        name: 'Coding Challenge',
+        notes: 'Yeeaah'
+      },
+      {
+        name: 'Technical Interview',
+        notes: 'Fo Sho'
+      },
+    ],
+    appliedFrom: 'Other',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
+  {
+    jobTitle: 'Engineer',
+    companyName: 'Amazon',
+    currentStatus: 'Offer',
+    salaryRangeMin: 150000,
+    salaryRangeMax: 160000,
+    keySkills: [
+      {
+        'skill': 'Sleepless nights'
+      }
+    ],
+    applicationStages: [
+      {
+        name: 'Applied',
+        notes: 'Attached resume and cover letter'
+      },
+      {
+        name: 'Phone Screening',
+        notes: 'Talked to Lisa, very friendly'
+      },
+      {
+        name: 'Coding Challenge',
+        notes: 'Yeeaah'
+      },
+      {
+        name: 'Technical Interview',
+        notes: 'Fo Sho'
+      },
+      {
+        name: 'Offer',
+        notes: 'Fo Sho'
       }
     ],
     appliedFrom: 'Other',

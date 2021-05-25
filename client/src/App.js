@@ -5,6 +5,7 @@ import SignUp from './pages/Form/SignUp';
 import SignIn from './pages/Form/SignIn';
 import Home from './pages/Home/Home';
 import ChartIndex from './pages/Chart/index';
+import StageForm from './pages/Stages/index';
 
 // import './App.css';
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/chart" component={ChartIndex} />
         <Route exact path="/jobForm" component={JobForm} />
+        <Route exact path="/stageForm/:id" component={StageForm} />
       </div>      
     </Router>
   );

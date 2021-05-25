@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Job from "./Job";
 import API from '../../utils/API';
 import data from "../../data.json";
@@ -7,6 +8,7 @@ import { Button } from '../Buttons/Button';
 const Jobs = () => {
   let [jobs, setJobs] = useState([]);
   const [filters, setFilters] = useState([]);
+  const history = useHistory();
 
   // useEffect(() => setJobs(data), []);
   useEffect(() => {
@@ -42,6 +44,11 @@ const Jobs = () => {
 
     return filters.every(filter => skillTags.includes(filter));
   };
+
+  const handleJobClick = (jobId) => {
+    console.log(jobId);
+    history.push(`/stageForm/${jobId}`);
+  }
 
   const handleTagClick = (tag) => {
     if (filters.includes(tag)) return;
@@ -80,7 +87,7 @@ const Jobs = () => {
           <p>Jobs are fetching...</p>
         ) : (
           filteredJobs.map((job) => (
-            <Job job={job} key={job._id} handleTagClick={handleTagClick} />
+            <Job job={job} key={job._id} onClick={handleJobClick} handleTagClick={handleTagClick} />
           ))
         )}
             {/* <Button></Button> */}

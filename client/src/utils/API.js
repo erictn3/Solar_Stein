@@ -15,8 +15,22 @@ export default {
     };
     let result = await axios(config);
 
-    //let result = await axios.get('http://localhost:3001/api/jobopportunities');
+    console.log('RESPONSE HEADERS:');
+    console.log(result.headers);
     console.log(result.data);
+
+    return result.data;
+  },
+
+  createJob: async function(job) {
+    console.log('createJob()');
+    console.log(job);
+    const config = {
+      method: 'POST',
+      url: 'http://localhost:3001/api/jobopportunities',
+      data: job
+    };
+    let result = await axios(config);
 
     return result.data;
   },
