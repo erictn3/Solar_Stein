@@ -67,10 +67,6 @@ let jobOpportunitySeed = [
         notes: 'Fo Sho'
       },
       {
-        name: 'Coding Challenge',
-        notes: 'Fo Sho'
-      },
-      {
         name: 'Onsite',
         notes: 'Fo Sho'
       },
@@ -104,16 +100,8 @@ let jobOpportunitySeed = [
         name: 'Applied',
         notes: 'Attached resume and cover letter'
       },
-      {
-        name: 'Phone Screening',
-        notes: 'Talked to Lisa, very friendly'
-      },
-      {
-        name: 'Coding Challenge',
-        notes: 'Yeeaah'
-      }
     ],
-    appliedFrom: 'Other',
+    appliedFrom: 'ladders',
     applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
   },
   {
@@ -145,7 +133,7 @@ let jobOpportunitySeed = [
         notes: 'Fo Sho'
       },
     ],
-    appliedFrom: 'Other',
+    appliedFrom: 'robert half',
     applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
   },
   {
@@ -156,7 +144,127 @@ let jobOpportunitySeed = [
     salaryRangeMax: 160000,
     keySkills: [
       {
-        'skill': 'Sleepless nights'
+        'skill': 'Python'
+      }
+    ],
+    applicationStages: [
+      {
+        name: 'Applied',
+        notes: 'Attached resume and cover letter'
+      },
+    ],
+    appliedFrom: 'Other',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
+  {
+    jobTitle: 'HR',
+    companyName: 'Boeing',
+    currentStatus: 'Applied',
+    salaryRangeMin: 10000,
+    salaryRangeMax: 160000,
+    keySkills: [
+      {
+        'skill': 'Social'
+      },
+      {
+        'skill': 'Organized'
+      }
+    ],
+    applicationStages: [
+      {
+        name: 'Applied',
+        notes: 'Attached resume and cover letter'
+      },
+    ],
+    appliedFrom: 'indeed',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
+  {
+    jobTitle: 'Marketing',
+    companyName: 'ASUS',
+    currentStatus: 'Applied',
+    salaryRangeMin: 10000,
+    salaryRangeMax: 160000,
+    keySkills: [
+      {
+        'skill': 'Google Ads'
+      },
+      {
+        'skill': 'Facebook Ads'
+      }
+    ],
+    applicationStages: [
+      {
+        name: 'Applied',
+        notes: 'Attached resume and cover letter'
+      },
+    ],
+    appliedFrom: 'ziprecruiter',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
+  {
+    jobTitle: 'Director',
+    companyName: 'Marvel',
+    currentStatus: 'Applied',
+    salaryRangeMin: 10000,
+    salaryRangeMax: 160000,
+    keySkills: [
+      {
+        'skill': 'Leadership'
+      },
+      {
+        'skill': 'Creative'
+      }
+    ],
+    applicationStages: [
+      {
+        name: 'Applied',
+        notes: 'Attached resume and cover letter'
+      },
+      {
+        name: 'Phone Screening',
+        notes: 'Talked to Lisa, very friendly'
+      },
+    ],
+    appliedFrom: 'monster',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
+  {
+    jobTitle: 'Manager',
+    companyName: 'NRG',
+    currentStatus: 'Offer',
+    salaryRangeMin: 10000,
+    salaryRangeMax: 160000,
+    keySkills: [
+      {
+        'skill': 'Organized'
+      },
+    ],
+    applicationStages: [
+      {
+        name: 'Applied',
+        notes: 'Attached resume and cover letter'
+      },
+      {
+        name: 'Phone Screening',
+        notes: 'Talked to Lisa, very friendly'
+      },
+    ],
+    appliedFrom: 'linkedin',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
+  {
+    jobTitle: 'Full Stack Engineer',
+    companyName: 'Microsoft',
+    currentStatus: 'Applied',
+    salaryRangeMin: 10000,
+    salaryRangeMax: 160000,
+    keySkills: [
+      {
+        'skill': 'Python'
+      },
+      {
+        'skill': 'MongoDB'
       }
     ],
     applicationStages: [
@@ -172,18 +280,103 @@ let jobOpportunitySeed = [
         name: 'Coding Challenge',
         notes: 'Yeeaah'
       },
+    ],
+    appliedFrom: 'robert half',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
+  {
+    jobTitle: 'Back End Developer',
+    companyName: 'Apple',
+    currentStatus: 'Applied',
+    salaryRangeMin: 10000,
+    salaryRangeMax: 160000,
+    keySkills: [
+      {
+        'skill': 'MongoDB'
+      },
+      {
+        'skill': 'Javascript'
+      }
+    ],
+    applicationStages: [
+      {
+        name: 'Applied',
+        notes: 'Attached resume and cover letter'
+      },
+      {
+        name: 'Phone Screening',
+        notes: 'Talked to Lisa, very friendly'
+      },
       {
         name: 'Technical Interview',
         notes: 'Fo Sho'
       },
+    ],
+    appliedFrom: 'Monster',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
+  {
+    jobTitle: 'Front End Developer',
+    companyName: 'Netflix',
+    currentStatus: 'Offer',
+    salaryRangeMin: 10000,
+    salaryRangeMax: 160000,
+    keySkills: [
       {
-        name: 'Offer',
-        notes: 'Fo Sho'
+        'skill': 'Javascript'
+      },
+      {
+        'skill': 'React'
       }
     ],
-    appliedFrom: 'Other',
+    applicationStages: [
+      {
+        name: 'Applied',
+        notes: 'Attached resume and cover letter'
+      },
+      {
+        name: 'Phone Screening',
+        notes: 'Talked to Lisa, very friendly'
+      },
+      {
+        name: 'Technical Interview',
+        notes: 'Fo Sho'
+      },
+    ],
+    appliedFrom: 'zip recruiter',
     applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
-  }
+  },
+  {
+    jobTitle: 'Financial Advisor',
+    companyName: 'Slack',
+    currentStatus: 'Applied',
+    salaryRangeMin: 10000,
+    salaryRangeMax: 160000,
+    keySkills: [
+      {
+        'skill': 'Organized'
+      },
+      {
+        'skill': 'Entrepreneur'
+      }
+    ],
+    applicationStages: [
+      {
+        name: 'Applied',
+        notes: 'Attached resume and cover letter'
+      },
+      {
+        name: 'Phone Screening',
+        notes: 'Talked to Lisa, very friendly'
+      },
+      {
+        name: 'Coding Challenge',
+        notes: 'Yeeaah'
+      },
+    ],
+    appliedFrom: 'indeed',
+    applicationSubmittedDate: new Date(new Date().setDate(new Date().getDate()-10))
+  },
 ];
 
 async function run() {

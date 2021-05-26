@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-const useForm = (callback, validate) => {
+const useForm = (callback) => {
   const[values, setValues] = useState({
     companyName: '', 
     minSalary: '',
@@ -8,7 +8,7 @@ const useForm = (callback, validate) => {
     jobSkills: '',
     appliedFrom: ''
   })
-  const [errors, setErrors] = useState({})
+  // const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = e => {
@@ -28,13 +28,13 @@ const useForm = (callback, validate) => {
 
   useEffect(
     () => {
-      if (Object.keys(errors).length === 0 &&
+      if (Object.keys().length === 0 &&
       isSubmitting) {
         callback();
       }
-    }, [errors]);
+    });
 
-  return {handleChange, values, handleSubmit, errors};
+  return {handleChange, values, handleSubmit};
 };
 
 export default useForm;

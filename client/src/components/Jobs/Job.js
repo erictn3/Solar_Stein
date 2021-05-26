@@ -38,7 +38,7 @@ const Job = ({
     let logo = './images/app-logo.png'
     // let logo = './../public/images/photosnap.svg';
 
-    switch(appliedFrom.toLowerCase()) {
+    switch(appliedFrom.toLowerCase().split(' ').join('')) {
       case "linkedin":
         logo = './images/LinkedIn-Logo.png';
         break;

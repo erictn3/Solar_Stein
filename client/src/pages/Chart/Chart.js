@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
+import Jobs from '../../components/Jobs/JobBoard';
 import API from '../../utils/API';
 
 function Chart(props) {
   const[chartData, setChartData] = useState({ labels: [], datasets: [] });
 
   useEffect(() => {
-    API.getUser('eric@solarstein.io').then(user => {
+    // API.getUser('eric@solarstein.io').then(user => {
+    API.getJobs().then(jobs => {
 
       const jobsData = {
         applied: 0,
@@ -17,11 +19,12 @@ function Chart(props) {
         offer: 0
       };
 
-      console.log('USER:');
-      console.log(user);
+      // console.log('USER:');
+      // console.log(user);
 
-      if (user != null && user.jobOpportunities != null) {
-        for (let job of user.jobOpportunities) {
+      // if (user != null && user.jobOpportunities != null) {
+      //   for (let job of user.jobOpportunities) {
+        for (let job of jobs) {
           for (let stage of job.applicationStages) {
             switch(stage.name.toLowerCase().trim()) {
               case 'applied':
@@ -46,7 +49,7 @@ function Chart(props) {
             }            
           }
         }
-      }
+      // }
 
       const { applied, phoneScreening, technicalInterview, codingChallenge, onSite, offer } = jobsData;
       var stats = [applied, phoneScreening, technicalInterview, codingChallenge, onSite, offer];

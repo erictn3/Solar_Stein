@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MenuItem } from './MenuItems'; 
-import { Button } from '../Buttons/Button';
+// import { Button } from '../Buttons/Button';
 import './Navbar.css';
 import image from './solarstein-logo-final.png'
 

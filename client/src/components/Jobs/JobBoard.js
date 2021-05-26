@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Job from "./Job";
 import API from '../../utils/API';
-import data from "../../data.json";
-import { Button } from '../Buttons/Button';
+// import data from "../../data.json";
+// import { Button } from '../Buttons/Button';
 
 const Jobs = () => {
   let [jobs, setJobs] = useState([]);
@@ -19,8 +19,7 @@ const Jobs = () => {
   //   // let apiJobs = getJobs();
 
     API.getJobs().then(apiJobs => {
-      console.log('Inside useEffect()');
-      console.log(apiJobs);
+
       setJobs(apiJobs);
     });
 
@@ -32,17 +31,34 @@ const Jobs = () => {
       return true;
     }
 
-    const skillTags = [keySkills];
+    for (var keySkill of keySkills) {
+      if (filters.includes(keySkill.skill) ){
+        console.log(filters);
+        return true;      
+ 
+      }
 
-    if (keySkills) {
-      skillTags.push(...keySkills);
-    }
+    } 
+    return false;
 
-    // if (languages) {
-    //   jobTags.push(...languages);
+    // console.log(keySkills)
+    // for (var key in keySkills) {
+    //   // console.log(key.skill)
+    //   for (var key2 in keySkills[key]) {
+    //     // if (key2 === skill)
+    //     console.log(key2);
+    //     console.log(keySkills[key][key2]);
+      
+    
+    //   }
+    // }
+    // const skillTags = [keySkills];
+
+    // if (keySkills.skill) {
+    //   skillTags.push(...keySkills);
     // }
 
-    return filters.every(filter => skillTags.includes(filter));
+    // return filters.some(filter => skillTags.includes(filter));
   };
 
   const handleJobClick = (jobId) => {
@@ -51,6 +67,7 @@ const Jobs = () => {
   }
 
   const handleTagClick = (tag) => {
+
     if (filters.includes(tag)) return;
     setFilters([...filters, tag]);
   };
@@ -64,7 +81,7 @@ const Jobs = () => {
   }
 
   const filteredJobs = jobs.filter(filterFnc);
-  // const filteredJobs = jobs;
+
 
   return (
     <>
