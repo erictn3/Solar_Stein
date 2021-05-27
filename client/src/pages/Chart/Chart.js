@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
-import Jobs from '../../components/Jobs/JobBoard';
+// import Jobs from '../../components/Jobs/JobBoard';
 import API from '../../utils/API';
 
 function Chart(props) {

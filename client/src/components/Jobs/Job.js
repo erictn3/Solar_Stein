@@ -40,7 +40,7 @@ const Job = ({
 
     switch(appliedFrom.toLowerCase().split(' ').join('')) {
       case "linkedin":
-        logo = './images/LinkedIn-Logo.png';
+        logo = './images/linkedin-Logo.png';
         break;
       case "indeed":
         logo = './images/indeed-Logo.png';

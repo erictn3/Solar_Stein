@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   // getUsers: function() {
@@ -10,7 +9,7 @@ export default {
     console.log(user);
     const config = {
       method: 'POST',
-      url: 'http://localhost:3001/api/users',
+      url: '/api/users',
       data: user
     };
     let result = await axios(config);
@@ -27,7 +26,7 @@ export default {
     console.log(job);
     const config = {
       method: 'POST',
-      url: 'http://localhost:3001/api/jobopportunities',
+      url: '/api/jobopportunities',
       data: job
     };
     let result = await axios(config);
@@ -39,11 +38,11 @@ export default {
     const config = {
       method: 'get',
       // Local host change
-      url: 'http://localhost:3001/api/jobopportunities'
+      url: '/api/jobopportunities'
     };
     let result = await axios(config);
 
-    //let result = await axios.get('http://localhost:3001/api/jobopportunities');
+    //let result = await axios.get('/api/jobopportunities');
     //console.log(result.data);
 
     return result.data;
@@ -53,7 +52,7 @@ export default {
     console.log(`GET USER: ${email}`);
     const config = {
       method: 'POST',
-      url: 'http://localhost:3001/api/users/get',
+      url: '/api/users/get',
       data: { email }
     };
     console.log('GET USER CONFIG:');
@@ -69,12 +68,12 @@ export default {
     console.log(user);
     const config = {
       method: 'POST',
-      url: 'http://localhost:3001/api/users/login',
+      url: '/api/users/login',
       data: user
     };
     let result = await axios(config);
 
-    //let result = await axios.get('http://localhost:3001/api/jobopportunities');
+    //let result = await axios.get('/api/jobopportunities');
     console.log(result.data);
 
     return result.data;
@@ -85,12 +84,12 @@ export default {
     console.log(user);
     const config = {
       method: 'POST',
-      url: 'http://localhost:3001/api/users/logout',
+      url: '/api/users/logout',
       data: user
     };
     let result = await axios(config);
 
-    //let result = await axios.get('http://localhost:3001/api/jobopportunities');
+    //let result = await axios.get('/api/jobopportunities');
     console.log(result.data);
 
     return result.data;
